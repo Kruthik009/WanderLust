@@ -65,6 +65,10 @@ app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
+app.get("/about", (req, res) => {
+    res.render("listings/about.ejs");
+});
+
 
 app.use(session(sessionOptions));
 app.use(flash());

@@ -12,7 +12,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "A full-stack, production-ready travel accommodation platform inspired by Airbnb, built using Node.js, Express, MongoDB Atlas, and EJS.",
   "dependencies": {
     "cloudinary": "^1.41.3",
     "connect-flash": "^0.1.1",
