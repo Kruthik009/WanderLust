@@ -65,10 +65,6 @@ app.get("/", (req, res) => {
     res.redirect("/listings");
 });
 
-app.get("/about", (req, res) => {
-    res.render("listings/about.ejs");
-});
-
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -101,6 +97,10 @@ app.use((req,res,next)=>{
 
 
 
+
+app.get("/about", (req, res) => {
+    res.render("listings/about.ejs");
+});
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
