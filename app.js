@@ -42,9 +42,6 @@ app.use(express.static(path.join(__dirname,"/public")));
 
 const store = MongoStore.create({
     mongoUrl: dbUrl,
-    crypto: {
-        secret:process.env.SECRET,
-    },
     touchAfter: 24*3600,
 });
 
@@ -58,7 +55,7 @@ const sessionOptions= {
     resave: false,
     saveUninitialized: true,
     cookie:{
-        expires: Date.now() + 7*24*60*60*1000,
+        expires: new Date(Date.now() + 7*24*60*60*1000),
         maxAge:7*24*60*60*1000,
         httpOnly:true,
     },
@@ -111,6 +108,9 @@ app.all("/*splat",(req,res,next)=> {
     });
 app.use((err, req, res, next)=>{
     let{statusCode=500, message="Something went wrong!"} = err;
+    if (!res.locals.currUser) res.locals.currUser = null;
+    if (!res.locals.success) res.locals.success = "";
+    if (!res.locals.error) res.locals.error = "";
     res.status(statusCode).render("error.ejs",{message});
 });
 const port = process.env.PORT || 8080;
